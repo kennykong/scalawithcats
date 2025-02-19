@@ -1,4 +1,4 @@
-import Dependencies._
+//import Dependencies._
 
 ThisBuild / scalaVersion     := "2.13.12"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
@@ -8,7 +8,7 @@ ThisBuild / organizationName := "example"
 lazy val root = (project in file("."))
   .settings(
     name := "scalawithcats",
-    libraryDependencies += munit % Test,
+//    libraryDependencies += munit % Test,
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-core" % "2.9.0",
       "org.typelevel" %% "cats-effect" % "3.4.6",
