@@ -81,8 +81,7 @@ object StateMonadExample extends App {
     _ <- modify[Int](_ + 1)
     c <- inspect[Int, Int](_ * 1000)
   } yield (a, b, c)
-  // program: State[Int, (Int, Int, Int)] = cats.data.
-//  IndexedStateT @42c9d44a
+  // program: State[Int, (Int, Int, Int)] = cats.data.IndexedStateT@42c9d44a
   p1(program)
   val (state2, result2) = program.run(1).value
   // state: Int = 3
