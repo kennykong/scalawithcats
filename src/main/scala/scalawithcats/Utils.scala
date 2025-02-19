@@ -40,4 +40,5 @@ object Utils {
     val t = getInstanceType1(a)
     println(s"$t = $a")
   }
+
 }

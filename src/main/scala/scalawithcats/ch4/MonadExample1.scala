@@ -1,7 +1,7 @@
 package scalawithcats.ch4
 
 import cats.implicits.toFunctorOps
-import scalawithcats.Utils.{p, p1, p2}
+import scalawithcats.Utils._
 
 import scala.Int
 
@@ -18,9 +18,18 @@ object MonadExample1 extends App {
   val success = monadError.pure(42)
   // success: ErrorOr[Int] = Right(42)
   p(success)
+  p1(success)
+  p2(success)
+  p3(success)
+  println()
+
   val failure = monadError.raiseError("Badness")
   // failure: ErrorOr[Nothing] = Left("Badness")
   p(failure)
+  p1(failure)
+  p2(failure)
+  p3(failure)
+  println()
 
   val res21 = monadError.handleErrorWith(failure) {
     case "Badness" =>
