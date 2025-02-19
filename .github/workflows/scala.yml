@@ -27,8 +27,8 @@ jobs:
         java-version: '8.0.442+6'
         distribution: 'temurin'
         cache: 'sbt'
-    - name: Set up scala
-      uses: actions/setup-sbt@1.10.7
+    - name: Setup sbt, scala launcher
+      uses: sbt/setup-sbt@v1
     - name: Run tests
       run: sbt test
       # Optional: This step uploads information to the GitHub dependency graph and unblocking Dependabot alerts for the repository
