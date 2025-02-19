@@ -90,12 +90,19 @@ object FunctorExMain extends App {
 
   import scala.concurrent.{Future, ExecutionContext}
 
+/**
+  implicit def futureFunctor(implicit ec: ExecutionContext): Functor[Future] =
+    new Functor[Future] {
+      def map[A, B](value: Future[A])(func: A => B): Future[B] =
+        value.map(func)
+    }
 
-//  implicit def futureFunctor(implicit ec: ExecutionContext): Functor[Future] =
-//    new Functor[Future] {
-//      def map[A, B](value: Future[A])(func: A => B): Future[B] =
-//        value.map(func)
-//    }
+  // We write this:
+  Functor[Future]
+  // The compiler expands to this first:
+  Functor[Future](futureFunctor)
+  // And then to this:
+  Functor[Future](futureFunctor(executionContext))
 
-
+ */
 }

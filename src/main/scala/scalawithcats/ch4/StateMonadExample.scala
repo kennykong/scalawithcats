@@ -37,30 +37,38 @@ object StateMonadExample extends App {
   } yield (a, b)
   val (state1, result1) = both.run(20).value
   // state: Int = 42
-  // result: (String, String) = ("Result of step1: 21", "Result of step2
-//    : 42
-//  ")
+  // result: (String, String) = ("Result of step1: 21", "Result of step2: 42")
   p1(state1, result1)
 
   val getDemo = State.get[Int]
   // getDemo: State[Int, Int] = cats.data.IndexedStateT@796af713
-  getDemo.run(10).value
+  val res1 = getDemo.run(10).value
+  p1(getDemo)
+  p1(res1)
   // res1: (Int, Int) = (10, 10)
   val setDemo = State.set[Int](30)
   // setDemo: State[Int, Unit] = cats.data.IndexedStateT@f9e66fa
-  setDemo.run(10).value
+  val res2 = setDemo.run(10).value
+  p1(setDemo)
+  p1(res2)
   // res2: (Int, Unit) = (30, ())
   val pureDemo = State.pure[Int, String]("Result")
   // pureDemo: State[Int, String] = cats.data.IndexedStateT@439e3ee4
-  pureDemo.run(10).value
+  val res3 = pureDemo.run(10).value
+  p1(pureDemo)
+  p1(res3)
   // res3: (Int, String) = (10, "Result")
   val inspectDemo = State.inspect[Int, String](x => s"${x}!")
   // inspectDemo: State[Int, String] = cats.data.IndexedStateT@77263be4
-  inspectDemo.run(10).value
+  val res4 = inspectDemo.run(10).value
+  p1(inspectDemo)
+  p1(res4)
   // res4: (Int, String) = (10, "10!")
   val modifyDemo = State.modify[Int](_ + 1)
   // modifyDemo: State[Int, Unit] = cats.data.IndexedStateT@44ddcbfc
-  modifyDemo.run(10).value
+  val res5 = modifyDemo.run(10).value
+  p1(modifyDemo)
+  p1(res5)
   // res5: (Int, Unit) = (11, ())
 
   import cats.data.State
@@ -80,4 +88,5 @@ object StateMonadExample extends App {
   // state: Int = 3
   // result: (Int, Int, Int) = (1, 2, 3000)
   p1(state2, result2)
+
 }
