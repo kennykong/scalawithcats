@@ -1,2 +1,2 @@
 # Scala With Cats Book Code
-Scala With Cats: https://scalawithcats.com/
+Scala With Cats: [website](https://scalawithcats.com/)
