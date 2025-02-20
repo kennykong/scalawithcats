@@ -47,6 +47,9 @@ object StateMonadExcise extends App {
       a.flatMap(_ => evalOne(b))
     }
 
+  def evalInput(input : String):  Int =
+    evalAll(input.split(" ").toList).runA(Nil).value
+
   val res10 = evalOne("42").runA(Nil).value
   // res10: Int = 42
   p1(res10)
@@ -79,4 +82,8 @@ object StateMonadExcise extends App {
   val res14 = biggerProgram.runA(Nil).value
   // res14: Int = 21
   p1(res14)
+
+  val res15 = evalInput("1 2 + 3 4 + *")
+  // res15: Int = 21
+  p1(res15)
 }
