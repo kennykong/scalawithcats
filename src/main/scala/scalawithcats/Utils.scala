@@ -41,4 +41,15 @@ object Utils {
     println(s"$t = $a")
   }
 
+  def p4[T: WeakTypeTag](a: T): Unit = {
+    val tag = implicitly[WeakTypeTag[T]]
+    val t = tag.tpe
+    println(s"$t = $a")
+  }
+
+  def p5[T](a: T)(implicit tag: WeakTypeTag[T]): Unit = {
+    val t = tag.tpe
+    println(s"$t = $a")
+  }
+
 }

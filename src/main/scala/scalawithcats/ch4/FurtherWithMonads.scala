@@ -96,4 +96,5 @@ object FurtherWithMonads extends App {
   // Branch(Branch(Leaf(189), Leaf(191)), Branch(Leaf(209), Leaf(211)))
   // )
   p1(res6)
+
 }
