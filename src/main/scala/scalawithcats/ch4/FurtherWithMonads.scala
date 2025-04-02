@@ -80,10 +80,7 @@ object FurtherWithMonads extends App {
   import cats.syntax.flatMap._ // for flatMap
 
   val res5 = Tree.branch(Tree.leaf(100), Tree.leaf(200)).flatMap(x => Tree.branch(Tree.leaf(x - 1), Tree.leaf(x + 1)))
-  // res5: Tree[Int] = Branch(
-  // Branch(Leaf(99), Leaf(101)),
-  // Branch(Leaf(199), Leaf(201))
-  // )
+  // res5: Tree[Int] = Branch(Branch(Leaf(99), Leaf(101)),Branch(Leaf(199), Leaf(201)))
   p1(res5)
 
   val res6 = for {
@@ -96,5 +93,9 @@ object FurtherWithMonads extends App {
   // Branch(Branch(Leaf(189), Leaf(191)), Branch(Leaf(209), Leaf(211)))
   // )
   p1(res6)
+
+  p4(res6)
+
+  p5(res6)
 
 }
