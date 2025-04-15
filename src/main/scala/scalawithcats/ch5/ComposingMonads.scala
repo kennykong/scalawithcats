@@ -2,6 +2,7 @@ package scalawithcats.ch5
 
 import cats.Monad
 
+//5.1
 class ComposingMonads {
 
   import cats.syntax.applicative._ //for pure
