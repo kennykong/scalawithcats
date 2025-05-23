@@ -41,7 +41,7 @@ object TransformAndRollOut extends App {
   def tacticalReport(ally1: String, ally2: String): String = {
     val stack = canSpecialMove(ally1, ally2).value
 
-    Await.result(stack, 1.second) match {
+    val res = Await.result(stack, 1.second) match {
       case Left(msg) =>
         s"Common error:$msg"
       case Right(true) =>
@@ -49,6 +49,8 @@ object TransformAndRollOut extends App {
       case Right(false) =>
         s"$ally1 and $ally2 need a recharge!"
     }
+    p1(stack)
+    res
   }
 
   val res13 = tacticalReport("Jazz", "Bumblebee")
