@@ -34,5 +34,5 @@ object SemigroupalExample extends App {
   // res7: Option[Int] = None
   p1(res7)
 
-//  product(a, product(b, c)) == product(product(a, b), c)
+  //  product(a, product(b, c)) == product(product(a, b), c)
 }
