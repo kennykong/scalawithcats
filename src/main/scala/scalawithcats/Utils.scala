@@ -21,7 +21,7 @@ object Utils {
     modelType.getName + typeParam
   }
 
-  def p[T: Manifest](a: T): Unit = {
+  def p0[T: Manifest](a: T): Unit = {
     val t = manOf(a)
     println(s"$t = $a")
   }
@@ -50,6 +50,10 @@ object Utils {
   def p5[T](a: T)(implicit tag: WeakTypeTag[T]): Unit = {
     val t = tag.tpe
     println(s"$t = $a")
+  }
+
+  def p[T: TypeTag](a: T) : Unit = {
+    p1(a)
   }
 
 }
