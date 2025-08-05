@@ -104,4 +104,57 @@ object FoldableExample extends App {
   //Folding Right
 
 
+  import cats.Eval
+  import cats.Foldable
+  def bigData = (1 to 100000).to(LazyList)
+
+  val res16 = bigData.foldRight(0L)(_ + _)
+  // java.lang.StackOverflowError ...
+  // this version of Scala do not appear SOE
+  p(res16)
+
+  import cats.instances.lazyList._ // for Foldable
+  val eval: Eval[Long] =
+    Foldable[LazyList].
+      foldRight(bigData, Eval.now(0L)) { (num, eval) =>
+        eval.map(_ + num)
+      }
+  val res17 = eval.value
+  // res3: Long = 5000050000L
+  p(res17)
+
+  //7.1.4.2
+  //Folding with Monoids
+
+  val res18 = Foldable[Option].nonEmpty(Option(42))
+  // res6: Boolean = true
+  p(res18)
+  val res19 = Foldable[List].find(List(1, 2, 3))(_ % 2 == 0)
+  // res7: Option[Int] = Some(2)
+  p(res19)
+
+  import cats.instances.int._ // for Monoid
+  val res20 = Foldable[List].combineAll(List(1, 2, 3))
+  // res8: Int = 6
+  p(res20)
+
+  import cats.instances.string._ // for Monoid
+  val res21 = Foldable[List].foldMap(List(1, 2, 3))(_.toString)
+  // res9: String = "123"
+  p(res21)
+
+  import cats.instances.vector._ // for Monoid
+  val ints1 = List(Vector(1, 2, 3), Vector(4, 5, 6))
+  val res22 = (Foldable[List] compose Foldable[Vector]).combineAll(ints1)
+  // res11: Int = 21
+  p(res22)
+
+  import cats.syntax.foldable._ // for combineAll and foldMap
+  val res23 = List(1, 2, 3).combineAll
+  // res12: Int = 6
+  p(res23)
+
+  val res24 = List(1, 2, 3).foldMap(_.toString)
+  // res13: String = "123"
+  p(res24)
 }
