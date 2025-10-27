@@ -15,6 +15,7 @@ object MapReduceExample extends App{
   val res1 = foldMap(Vector(1, 2, 3))(identity)
   // res1: Int = 6
   p(res1)
+
   import cats.instances.string._ // for Monoid
   // Mapping to a String uses the concatenation monoid:
   val res2 = foldMap(Vector(1, 2, 3))(_.toString + "! ")
