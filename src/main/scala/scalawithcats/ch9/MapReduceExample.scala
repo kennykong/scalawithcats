@@ -138,7 +138,7 @@ object MapReduceExample extends App {
       .traverse(group => Future(group.foldMap(func)))
       .map(_.combineAll)
   }
-0
+
   val future: Future[Int] =
     parallelFoldMap((1 to 1000).toVector)(_ * 1000)
   val res18 = Await.result(future, 1.second)
