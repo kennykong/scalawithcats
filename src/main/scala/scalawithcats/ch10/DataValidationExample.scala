@@ -297,4 +297,5 @@ object DataValidationExample extends App {
         check1(a).withEither(_.flatMap(b => check2(b).toEither))
     }
   }
+
 }
