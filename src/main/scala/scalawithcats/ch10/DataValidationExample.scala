@@ -296,6 +296,5 @@ object DataValidationExample extends App {
       override def apply(a: A)(implicit s: Semigroup[E]): Validated[E, C] =
         check1(a).withEither(_.flatMap(b => check2(b).toEither))
     }
-
   }
 }
