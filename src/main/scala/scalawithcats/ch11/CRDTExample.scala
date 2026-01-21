@@ -186,4 +186,14 @@ object CRDTExample extends App {
       def total(f: F[K, V])(implicit m: CommutativeMonoid[V]): V =
         f.values.combineAll
     }
+
+  val g3 = Map("a" -> 8, "b" -> 4)
+  val g4 = Map("a" -> 3, "b" -> 6)
+  val counter1 = GCounter2[Map, String, Int]
+  val merged1 = counter1.merge(g3, g4)
+  p(merged1)
+  // merged1: Map[String, Int] = Map("a" -> 8, "b" -> 6)
+  val total1 = counter1.total(merged1)
+  p(total1)
+  // total: Int = 14
 }
