@@ -19,6 +19,17 @@ object CRDTExample extends App {
     def total: Int = counters.values.sum
   }
 
+  val g00 = Map("a" -> 7, "b" -> 3)
+  val g01 = Map("a" -> 2, "b" -> 5)
+  val counter00 = GCounter(g00)
+  val counter01 = GCounter(g01)
+  val merged0 = counter00.merge(counter01)
+  p(merged0)
+  // merged0: Map[String, Int] = Map("a" -> 7, "b" -> 5)
+  val total0 = merged0.total
+  p(total0)
+  // total0: Int = 12
+
   // 11.3.1
 
   import cats.kernel.CommutativeMonoid
